@@ -22,6 +22,14 @@ public class Robot {
 	public String getName() {
 		return name;
 	}
+	
+	public int getXpos () {
+		return this.pos[0];
+	}
+	
+	public int getYpos () {
+		return this.pos[1];
+	}
 
 	public void setSpeed(int speed) {
 		this.speed = speed;
@@ -68,8 +76,10 @@ public class Robot {
 		// TODO Auto-generated method stub
 		
 		int[] position = {100, 100};
+		int[] position2 = {100, 0};
 		Robot michael = new Robot ("Michael", 25, position, 0);
-		michael.rotate(90);
+		michael.rotate(-90);
+		System.out.println(michael.determineDist(position2));
 		michael.move();
 		System.out.println(michael);
 
