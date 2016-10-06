@@ -5,12 +5,14 @@ public class Course {
 	private int Credits;
 	private int RemainingSeats;
 	private Student[] Roster;
+	private int numStudents;
 	
 	public Course (String name, int credits, int seats) {
 		this.Name = name;
 		this.Credits = credits;
 		this.RemainingSeats = seats;
 		this.Roster = new Student [seats];
+		this.numStudents = 0;
 	}
 
 	public String getName() {
@@ -26,14 +28,33 @@ public class Course {
 		return this.Credits;
 	}
 	
+	public int getNumStudents() {
+		return numStudents;
+	}
+
+	public void setNumStudents(int numStudents) {
+		this.numStudents = numStudents;
+	}
+
 	public void setRemainingSeats(int remainingSeats) {
 		this.RemainingSeats = remainingSeats;
 	}
 
 	public boolean addStudent (Student s) {
+		//System.out.println(s.getStudentID());
+		for (int j = 0; j < this.getNumStudents(); j++) {
+			
+			if (this.Roster[j].getStudentID() == s.getStudentID()) {
+				//System.out.println("False");
+				return false;
+			}
+			
+		} 
+		
 		if (this.getRemainingSeats() == 0) {
 			return false;
 		}
+		
 		else {
 			this.setRemainingSeats(this.getRemainingSeats() - 1);
 			int i = 0;
@@ -41,6 +62,7 @@ public class Course {
 			while (i < this.Roster.length && result) {
 				if (this.Roster[i] == null) {
 					this.Roster[i] = s;
+					this.setNumStudents(this.getNumStudents() + 1);
 					result = false;
 				}
 				i++;
@@ -54,7 +76,7 @@ public class Course {
 		String out = "";
 		for (int i = 0; i < l; i++) {
 			if (Roster[i] != null) {
-				out = out + this.Roster[i].toString();
+				out = out + this.Roster[i].toString() + "\n";
 			}
 		}
 		return out;
@@ -63,14 +85,13 @@ public class Course {
 	public double averageGPA () {
 		int l = this.Roster.length;
 		double g = 0;
-		int num = 0;
 		for (int i = 0; i < l; i++) {
 			if (Roster[i] != null) {
 				g = g + Roster[i].getGPA();
-				num++;
+				
 			}
 		}
-		g = g/num;
+		g = g/this.getNumStudents();
 		return g;
 	}
 
