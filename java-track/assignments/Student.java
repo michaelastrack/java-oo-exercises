@@ -1,34 +1,26 @@
 
 public class Student {
 	
-	private String firstname;
-	private String lastname;
+
 	private String Name;
 	private int StudentID;
-	private String ClassStanding;
 	private int Credits;
 	private double GPA;
 	private double qualityScore;
 	
 	public Student (String firstname, String lastname, int ID) {
-		this.firstname = firstname;
-		this.lastname = lastname;
 		this.Name = firstname + " " + lastname;
 		this.StudentID = ID;
 		this.Credits = 0;
 		this.GPA = 0;
-		this.ClassStanding = "Freshman";
 		this.qualityScore = 0.0;
 	}
 	
 	public Student (String firstname, String lastname, int ID, double GPA, int Credits) {
-		this.firstname = firstname;
-		this.lastname = lastname;
 		this.Name = firstname + " " + lastname;
 		this.StudentID = ID;
 		this.Credits = Credits;
 		this.GPA = GPA;
-		this.ClassStanding = "";
 		this.qualityScore = 0.0;		
 	}
 
@@ -97,20 +89,21 @@ public class Student {
 		this.setQualityScore(q);
 	}
 	public double computeTuition () {
-		int semesters = this.getCredits()/15;
-		if (this.getCredits() % 15 != 0) {
-			semesters++;
-		}
-		double t = 20000 * semesters;
+		double t;
+		int s = this.getCredits()/15;
+		int c = this.getCredits()%15;
+		//System.out.println(c);
+		//System.out.println(s);
+		t = (s*20000) + (c*1333.33);
 		return t;
 	}
 	
-	public Student createLegacy (Student parent2) {
-		String firstname = this.getName();
+	public static Student createLegacy (Student parent1, Student parent2) {
+		String firstname = parent1.getName();
 		String lastname = parent2.getName();
-		int ID = this.getStudentID() + parent2.getStudentID();
-		double GPA = (this.getGPA() + parent2.getGPA())/2.0;
-		int credits = Math.max(this.getCredits(), parent2.getCredits());
+		int ID = parent1.getStudentID() + parent2.getStudentID();
+		double GPA = (parent1.getGPA() + parent2.getGPA())/2.0;
+		int credits = Math.max(parent1.getCredits(), parent2.getCredits());
 		return new Student (firstname, lastname, ID, GPA, credits);
 	}
 	

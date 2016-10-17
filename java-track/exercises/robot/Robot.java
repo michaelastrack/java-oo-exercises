@@ -1,4 +1,4 @@
-package exercises;
+package robot;
 
 public class Robot {
 	
@@ -8,6 +8,10 @@ public class Robot {
 	private int orientation;
 	
 	public Robot (String name, int speed, int[] pos, int orientation) {
+		
+		if (speed < 0) {
+			throw new IllegalArgumentException();
+		}
 		this.speed = speed;
 		this.name = name;
 		this.orientation = orientation;
@@ -69,7 +73,7 @@ public class Robot {
 	}
 	
 	public String toString () {
-		return "Name: " + this.name + " X-Position: " + this.pos[0] + " Y-Position: " + this.pos[1] + " Speed: " + this.speed + " Orientation: " + this.orientation + " degrees";
+		return "Name: " + this.name + " X-Pos: " + this.pos[0] + " Y-Pos: " + this.pos[1] + " Speed: " + this.speed + " Orientation: " + this.orientation + " degrees";
 	}
 	
 	public static void main(String[] args) {
@@ -77,11 +81,22 @@ public class Robot {
 		
 		int[] position = {100, 100};
 		int[] position2 = {100, 0};
+		/*
 		Robot michael = new Robot ("Michael", 25, position, 0);
 		michael.rotate(-90);
 		System.out.println(michael.determineDist(position2));
 		michael.move();
-		System.out.println(michael);
+		System.out.println(michael);  */
+		try {
+			Robot bob = new Robot ("Bob", -10, position, 180);
+			System.out.println(bob.getName());
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println("Can't create Robot");
+			e.printStackTrace();
+		}
+		
+		
 
 	}
 

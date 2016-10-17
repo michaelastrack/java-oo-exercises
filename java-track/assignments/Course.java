@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Course {
 	
@@ -6,6 +7,7 @@ public class Course {
 	private int RemainingSeats;
 	private Student[] Roster;
 	private int numStudents;
+	private static ArrayList<Course> CourseList = new ArrayList<Course>();
 	
 	public Course (String name, int credits, int seats) {
 		this.Name = name;
@@ -13,6 +15,7 @@ public class Course {
 		this.RemainingSeats = seats;
 		this.Roster = new Student [seats];
 		this.numStudents = 0;
+		CourseList.add(this);
 	}
 
 	public String getName() {
@@ -44,7 +47,7 @@ public class Course {
 		//System.out.println(s.getStudentID());
 		for (int j = 0; j < this.getNumStudents(); j++) {
 			
-			if (this.Roster[j].getStudentID() == s.getStudentID()) {
+			if (this.Roster[j].getName().equals(s.getName())) {
 				//System.out.println("False");
 				return false;
 			}
@@ -99,7 +102,9 @@ public class Course {
 		return "Course: " + this.getName() + " Credits: " + this.getCredits();
 	}
 	
-	
+	public static ArrayList<Course> getAllCourses () {
+		return CourseList;
+	}
 	
 
 

@@ -1,4 +1,4 @@
-package exercises;
+package robot;
 
 import java.util.ArrayList;
 import java.util.Scanner;
