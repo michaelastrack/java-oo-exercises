@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Course {
 	
@@ -106,11 +107,30 @@ public class Course {
 		return CourseList;
 	}
 	
+	@Override
+	public boolean equals (Object o) {
+		if (this == o) 
+			return true;
+		
+		if (o == null)
+			return false;
+		
+		if (getClass() != o.getClass())
+			return false;
+		
+		Course c = (Course) o;
+		
+		return Objects.equals(Name, c.Name) && Objects.equals(Credits, c.Credits);
+	}
+	
 
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// Course C = new Course ("Bob", 5, 5);
+		Course C = new Course ("Bob", 5, 5);
+		Course D = new Course ("Bob", 5, 5);
+		System.out.println(C == D);
+		System.out.println(C.equals(D));
 		// System.out.println(C);
 	}
 

@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class Student {
 	
@@ -110,11 +111,32 @@ public class Student {
 	public String toString () {
 		return "Name: " + this.Name + " Student ID: " + this.StudentID;
 	}
+	
+	@Override 
+	public boolean equals (Object o) {
+		if (this == o) 
+			return true;
+		
+		if (o == null)
+			return false;
+		
+		if (getClass() != o.getClass())
+			return false;
+		
+		Student s = (Student) o;
+		
+		return Objects.equals(Name, s.Name) && Objects.equals(StudentID, s.StudentID);
+	}
 
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		Student s = new Student ("Mike", "Smith", 17);
+		Student t = new Student ("Mike", "Smith", 53);
+		Student u = new Student ("Mike", "Smith", 17);
+		System.out.println(s.equals(t));
+		System.out.println(s.equals(u));
+		
 	}
 
 }

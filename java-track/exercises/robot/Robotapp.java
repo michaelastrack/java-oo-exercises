@@ -9,12 +9,17 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class Robotapp {
 
 	private JFrame frmRobots;
 	private DefaultListModel<Robot> listModel;
-	private JList<Robot> list;
+	public JList<Robot> RL;
+	private JTextField textField;
+	private JTextField DistField;
+	private String S = "";
 	
 
 	/**
@@ -49,6 +54,8 @@ public class Robotapp {
 		frmRobots.setBounds(100, 100, 687, 300);
 		frmRobots.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		
+		
 		listModel = new DefaultListModel<Robot>();
 		
 		JButton btnCreateARobot = new JButton("Create a Robot");
@@ -70,7 +77,7 @@ public class Robotapp {
 						""
 						);
 				Robot r = new Robot (name, speed, pos, orient);
-				listModel.add(listModel.size(), r);
+				listModel.addElement(r);
 			}
 		});
 		frmRobots.getContentPane().setLayout(null);
@@ -80,8 +87,8 @@ public class Robotapp {
 		btnMoveARobot.setBounds(10, 22, 180, 30);
 		btnMoveARobot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(list);
-				int selected = list.getSelectedIndex();
+				//System.out.println(RL);
+				int selected = RL.getSelectedIndex();
 				System.out.println(selected);
 				listModel.get(selected).move();
 			}
@@ -93,7 +100,7 @@ public class Robotapp {
 		btnRotateARobot.setBounds(10, 51, 180, 30);
 		btnRotateARobot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selected = list.getSelectedIndex();
+				int selected = RL.getSelectedIndex();
 				int rotate = (int) getPositiveValue("How much do you want to rotate the Robot by?", "Rotation Dialogue");
 				listModel.get(selected).rotate(rotate);
 			}
@@ -101,12 +108,35 @@ public class Robotapp {
 		frmRobots.getContentPane().add(btnRotateARobot);
 		
 		JButton btnComputeTheDistance = new JButton("Compute the distance between two Robots");
+		btnComputeTheDistance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int first = RL.getSelectedIndex();
+				int second = RL.getMaxSelectionIndex();
+				Robot s = listModel.get(first);
+				Robot t = listModel.get(second);
+				int[] pos = {t.getXpos(), t.getYpos()};
+				double dist = s.determineDist(pos);
+				System.out.println(dist);
+				S = Double.toString(dist);
+				DistField.setText(S);
+				
+				
+			}
+		});
 		btnComputeTheDistance.setBounds(10, 79, 180, 30);
 		frmRobots.getContentPane().add(btnComputeTheDistance);
 		
-		JList<Robot> list = new JList<Robot>(listModel);
-		list.setBounds(200, 4, 461, 211);
-		frmRobots.getContentPane().add(list);
+		RL = new JList<Robot>(listModel);
+		RL.setBounds(200, 4, 461, 211);
+		frmRobots.getContentPane().add(RL);
+		
+		DistField = new JTextField();
+		DistField.setBounds(200, 226, 86, 20);
+		frmRobots.getContentPane().add(DistField);
+		DistField.setEditable(false);
+		DistField.setText(S);
+		DistField.setColumns(10);
+		
 	}
 	
 	private double getPositiveValue (String prompt, String title) {
