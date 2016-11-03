@@ -8,7 +8,7 @@ public class TypeF extends Block{
 	private boolean west;
 	
 	public TypeF (int id, boolean s, boolean f) {
-		super(id, s, f);
+		super(id, s, f, false);
 		this.north = true;
 		this.east = false;
 		this.south = false;
@@ -16,12 +16,12 @@ public class TypeF extends Block{
 	}
 	
 	public String TryToMove (int orient) {
-		if (orient != 2 || orient != 3) {
+		if (orient == 1 || orient == 4) {
 			throw new IllegalArgumentException();
 		}
 		String outcome = "";
 		if (orient == 2) {
-			outcome = "3) North \n";
+			outcome = "1) North \n";
 			return outcome;
 		}
 		else {
@@ -46,5 +46,6 @@ public class TypeF extends Block{
 	public boolean isWest() {
 		return west;
 	}
+
 
 }

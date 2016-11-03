@@ -8,7 +8,7 @@ public class TypeN extends Block{
 	private boolean west;
 	
 	public TypeN (int id, boolean s, boolean f) {
-		super(id, s, f);
+		super(id, s, f, false);
 		this.north = true;
 		this.east = true;
 		this.south = false;
@@ -16,7 +16,7 @@ public class TypeN extends Block{
 	}
 	
 	public String TryToMove (int orient) {
-		if (orient != 3 || orient != 4) {
+		if (orient == 1 || orient == 2) {
 			throw new IllegalArgumentException();
 		}
 		String outcome = "";

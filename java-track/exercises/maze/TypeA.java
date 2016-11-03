@@ -8,14 +8,14 @@ public class TypeA extends Block{
 	private boolean west;
 	
 	public TypeA (int id, boolean s, boolean f) {
-		super(id, s, f);
+		super(id, s, f, false);
 		this.north = true;
 		this.east = true;
 		this.south = true;
 		this.west = true;
 	}
 	
-	public String TrytoMove (int orient) {
+	public String TryToMove (int orient) {
 		if (orient < 1 || orient > 4) {
 			throw new IllegalArgumentException();
 		}
@@ -64,18 +64,21 @@ public class TypeA extends Block{
 	}
 
 	public static void main(String[] args) {
+		
+		/*
 		TypeA a = new TypeA (1, true, true);
 		int b = 1;
 		int c = 2;
 		int d = 3;
 		int e = 4;
-		System.out.println(a.TrytoMove(b));
+		System.out.println(a.TryToMove(b));
 		System.out.println();
-		System.out.println(a.TrytoMove(c));
+		System.out.println(a.TryToMove(c));
 		System.out.println();
-		System.out.println(a.TrytoMove(d));
+		System.out.println(a.TryToMove(d));
 		System.out.println();
-		System.out.println(a.TrytoMove(e));
+		System.out.println(a.TryToMove(e)); 
+		*/
 
 	}
 
