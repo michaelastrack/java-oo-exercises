@@ -1,14 +1,14 @@
 package maze;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class BigMaze {
 	
-	private static Scanner s;
+//	private static Scanner s;
 
 	public static void main(String[] args) {
-		s = new Scanner(System.in);
-		boolean GoOn = true;
+		// s = new Scanner(System.in);
+		// boolean GoOn = true;
 		Block [][] blocks = new Block [7][7];
 		Maze m = new Maze(7, 6, 0, blocks);
 		
@@ -78,8 +78,10 @@ public class BigMaze {
 		m.blocks[6][5] = new TypeL (48, false, false);
 		m.blocks[6][6] = new TypeF (49, false, false);
 		
+		m.RunMaze(6, 0, orient);
 		
 		
+		/*
 		while (GoOn) {
 			
 			
@@ -100,7 +102,7 @@ public class BigMaze {
 				GoOn = false;
 			}
 			
-		}
+		} */
 
 	}
 
