@@ -42,7 +42,7 @@ public class Maze {
 					this.path[i][j] = "F";
 				}
 				else {
-				this.path[i][j] = " ";
+				this.path[i][j] = "O";
 				}
 			}
 		}
@@ -155,15 +155,15 @@ public class Maze {
 		int orient = 1;
 
 		// Initialize a 3 x 3 maze
-		m.blocks[0][0] = new TypeK (1, false, false);
-		m.blocks[0][1] = new TypeL (2, false, false);
-		m.blocks[0][2] = new TypeF (3, false, true);
-		m.blocks[1][0] = new TypeB (4, false, false);
-		m.blocks[1][1] = new TypeL (5, false, false);
-		m.blocks[1][2] = new TypeG (6, false, false);
-		m.blocks[2][0] = new TypeN (7, false, false);
-		m.blocks[2][1] = new TypeL (8, false, false);
-		m.blocks[2][2] = new TypeD (9, true, false);
+		m.blocks[0][0] = new TypeK (false, false);
+		m.blocks[0][1] = new TypeL (false, false);
+		m.blocks[0][2] = new TypeF (false, true);
+		m.blocks[1][0] = new TypeB (false, false);
+		m.blocks[1][1] = new TypeL (false, false);
+		m.blocks[1][2] = new TypeG (false, false);
+		m.blocks[2][0] = new TypeN (false, false);
+		m.blocks[2][1] = new TypeL (false, false);
+		m.blocks[2][2] = new TypeD (true, false);
 		
 		m.RunMaze(x, y, orient);
 		

@@ -7,8 +7,8 @@ public class TypeD extends Block{
 	private boolean south;
 	private boolean west;
 	
-	public TypeD (int id, boolean s, boolean f) {
-		super(id, s, f, false);
+	public TypeD (boolean s, boolean f) {
+		super(s, f, false);
 		this.north = true;
 		this.east = false;
 		this.south = true;

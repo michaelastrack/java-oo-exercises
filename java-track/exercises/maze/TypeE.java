@@ -7,8 +7,8 @@ public class TypeE extends Block{
 	private boolean south;
 	private boolean west;
 	
-	public TypeE (int id, boolean s, boolean f) {
-		super(id, s, f, false);
+	public TypeE (boolean s, boolean f) {
+		super(s, f, false);
 		this.north = false;
 		this.east = true;
 		this.south = true;
